@@ -34,6 +34,7 @@
 #define MODULE_NAME "fe-text/theme-indent"
 
 #include "common.h"
+#include "modules.h"
 #include "signals.h"
 #include "levels.h"
 
