@@ -1,3 +1,8 @@
+2002-05-20 06:18  Timo Sirainen <tss@iki.fi>
+
+	* icb/src/core/: icb-channels.c, icb-core.c, icb-servers.c,
+	icb-servers.h: fixes for irssi cvs
+
 2002-05-18 13:52  Timo Sirainen <tss@iki.fi>
 
 	* theme-indent.c: req. 0.8.5 to work properly, updated the example
