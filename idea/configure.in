@@ -1,7 +1,7 @@
 AC_INIT(src)
 
 AM_CONFIG_HEADER(config-plugin.h)
-AM_INIT_AUTOMAKE(irssi-idea, 0.1.45)
+AM_INIT_AUTOMAKE(irssi-idea, 0.1.46)
 
 AM_MAINTAINER_MODE
 
