@@ -99,6 +99,12 @@ static void cmd_beep(const char *data, ICB_SERVER_REC *server)
 	}
 }
 
+static void cmd_noop(const char *data, ICB_SERVER_REC *server)
+{
+       CMD_ICB_SERVER(server);
+       icb_noop(server);
+}
+
 void icb_commands_init(void)
 {
 	char **cmd;
@@ -114,6 +120,7 @@ void icb_commands_init(void)
         command_bind_icb("kick", NULL, (SIGNAL_FUNC) cmd_boot);
         command_bind_icb("g", NULL, (SIGNAL_FUNC) cmd_group);
         command_bind_icb("beep", NULL, (SIGNAL_FUNC) cmd_beep);
+        command_bind_icb("noop", NULL, (SIGNAL_FUNC) cmd_noop);
 
 	command_set_options("connect", "+icbnet");
 }
@@ -132,4 +139,5 @@ void icb_commands_deinit(void)
         command_unbind("kick", (SIGNAL_FUNC) cmd_boot);
         command_unbind("g", (SIGNAL_FUNC) cmd_group);
         command_unbind("beep", (SIGNAL_FUNC) cmd_beep);
+        command_unbind("noop", (SIGNAL_FUNC) cmd_noop);
 }
