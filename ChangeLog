@@ -1,3 +1,16 @@
+2002-05-17 08:58  Timo Sirainen <tss@iki.fi>
+
+	* theme-indent.c: added missing include
+
+2002-05-17 08:57  Timo Sirainen <tss@iki.fi>
+
+	* idea/src/plugin.c: fixes for latest cvs irssi
+
+2002-05-17 08:56  Timo Sirainen <tss@iki.fi>
+
+	* icb/src/core/: icb-channels.c, icb-channels.h, icb-core.c: fixes
+	for latest cvs
+
 2002-05-04 19:21  Timo Sirainen <tss@iki.fi>
 
 	* icb/src/core/: Makefile.am, icb-channels.c, icb-commands.c,
