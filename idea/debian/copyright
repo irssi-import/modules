@@ -1,0 +1,14 @@
+The irssi-idea plugin was written by Heikki Hannikainen <hessu@hes.iki.fi>,
+some modifications and updates by Pekka Aleksi Knuutila <pa@debian.org>. 
+
+Sources can be found at http://www.inside.org/~zur/irssi-idea/ and
+http://www.irssi.org/.
+
+The plugin wrapper is under the GPL, see /usr/share/common-licenses/GPL on
+Debian systems. The IDEA library is not!
+
+The IDEA algorithm is patented in many countries, and the patent holder
+disallows commercial use (in which case you need to obtain a license).
+
+This is strong crypto, and might be illegal to use or import/export
+in some fascist countries. Check your local regulations!
