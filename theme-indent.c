@@ -3,7 +3,7 @@
  		  indentation strings from theme.
 
  compile:
-   export IRSSI=~/src/irssi-0.7.99
+   export IRSSI=~/src/irssi-0.8.5
    gcc theme-indent.c -Wall -g -o ~/.irssi/modules/libtheme_indent.so -shared -I$IRSSI/src -I$IRSSI/src/fe-common/core -I$IRSSI/src/core -I$IRSSI/src/fe-text `glib-config --cflags`
 
  usage:
