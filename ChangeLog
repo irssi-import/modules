@@ -1,3 +1,16 @@
+2002-05-18 13:52  Timo Sirainen <tss@iki.fi>
+
+	* theme-indent.c: req. 0.8.5 to work properly, updated the example
+	path.
+
+2002-05-18 13:39  Timo Sirainen <tss@iki.fi>
+
+	* theme-indent.c: another comment update
+
+2002-05-18 13:37  Timo Sirainen <tss@iki.fi>
+
+	* theme-indent.c: updated comments
+
 2002-05-17 08:58  Timo Sirainen <tss@iki.fi>
 
 	* theme-indent.c: added missing include
