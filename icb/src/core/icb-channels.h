@@ -17,8 +17,8 @@ struct _ICB_CHANNEL_REC {
 };
 
 /* Create new ICB channel record */
-ICB_CHANNEL_REC *icb_channel_create(ICB_SERVER_REC *server,
-				    const char *name, int automatic);
+ICB_CHANNEL_REC *icb_channel_create(ICB_SERVER_REC *server, const char *name,
+				    const char *visible_name, int automatic);
 
 void icb_change_channel(ICB_SERVER_REC *server, const char *channel,
 			int automatic);

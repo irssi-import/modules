@@ -121,7 +121,8 @@ void icb_core_init(void)
 	rec->server_connect = (SERVER_REC *(*) (SERVER_CONNECT_REC *))
 		icb_server_connect;
 	rec->channel_create =
-		(CHANNEL_REC *(*) (SERVER_REC *, const char *, int))
+		(CHANNEL_REC *(*) (SERVER_REC *, const char *,
+				   const char *, int))
                 icb_channel_create;
 	rec->query_create =
 		(QUERY_REC *(*) (const char *, const char *, int))

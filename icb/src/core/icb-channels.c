@@ -25,8 +25,8 @@
 #include "icb-protocol.h"
 
 /* Create new ICB channel record */
-ICB_CHANNEL_REC *icb_channel_create(ICB_SERVER_REC *server,
-				    const char *name, int automatic)
+ICB_CHANNEL_REC *icb_channel_create(ICB_SERVER_REC *server, const char *name,
+				    const char *visible_name, int automatic)
 {
 	ICB_CHANNEL_REC *rec;
 
@@ -34,11 +34,8 @@ ICB_CHANNEL_REC *icb_channel_create(ICB_SERVER_REC *server,
 	g_return_val_if_fail(name != NULL, NULL);
 
 	rec = g_new0(ICB_CHANNEL_REC, 1);
-	rec->chat_type = ICB_PROTOCOL;
-	rec->name = g_strdup(name);
-	rec->server = server;
-
-	channel_init((CHANNEL_REC *) rec, automatic);
+	channel_init((CHANNEL_REC *) rec, (SERVER_REC *) server,
+		     name, visible_name, automatic);
 	return rec;
 }
 
@@ -49,7 +46,7 @@ void icb_change_channel(ICB_SERVER_REC *server, const char *channel,
 		return;
 
 	channel_destroy(CHANNEL(server->group));
-	server->group = icb_channel_create(server, channel, automatic);
+	server->group = icb_channel_create(server, channel, NULL, automatic);
 
         icb_command(server, "g", channel, NULL);
 }
@@ -60,8 +57,8 @@ static void sig_connected(ICB_SERVER_REC *server)
 		return;
 
 	/* create the group for the channel */
-	server->group =
-		icb_channel_create(server, server->connrec->channels, TRUE);
+	server->group = icb_channel_create(server, server->connrec->channels,
+					   NULL, TRUE);
 }
 
 void icb_channels_init(void)
