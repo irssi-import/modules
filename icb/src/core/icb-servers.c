@@ -51,6 +51,7 @@ SERVER_REC *icb_server_init_connect(SERVER_CONNECT_REC *conn)
 	if (server->connrec->port <= 0)
 		server->connrec->port = 7326;
 
+        server_connect_init((SERVER_REC *) server);
 	return (SERVER_REC *) server;
 }
 
@@ -130,7 +131,7 @@ static void send_message(SERVER_REC *server, const char *target,
 	}
 }
 
-static void sig_server_looking(ICB_SERVER_REC *server)
+static void sig_connected(ICB_SERVER_REC *server)
 {
 	if (!IS_ICB_SERVER(server))
 		return;
@@ -172,14 +173,14 @@ static void sig_setup_fill_connect(ICB_SERVER_CONNECT_REC *conn)
 
 void icb_servers_init(void)
 {
-        signal_add("server looking", (SIGNAL_FUNC) sig_server_looking);
+	signal_add_first("server connected", (SIGNAL_FUNC) sig_connected);
         signal_add("server disconnected", (SIGNAL_FUNC) sig_server_disconnected);
 	signal_add("server setup fill connect", (SIGNAL_FUNC) sig_setup_fill_connect);
 }
 
 void icb_servers_deinit(void)
 {
-        signal_remove("server looking", (SIGNAL_FUNC) sig_server_looking);
+	signal_remove("server connected", (SIGNAL_FUNC) sig_connected);
         signal_remove("server disconnected", (SIGNAL_FUNC) sig_server_disconnected);
 	signal_remove("server setup fill connect", (SIGNAL_FUNC) sig_setup_fill_connect);
 }
