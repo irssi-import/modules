@@ -3,6 +3,45 @@
 <changelog xmlns="http://www.red-bean.com/xmlns/cvs2cl/">
 
 <entry>
+<date>2002-05-18</date>
+<weekday>Saturday</weekday>
+<time>13:52</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>theme-indent.c</name>
+<revision>1.5</revision>
+</file>
+<msg>req. 0.8.5 to work properly, updated the example path.
+</msg>
+</entry>
+
+<entry>
+<date>2002-05-18</date>
+<weekday>Saturday</weekday>
+<time>13:39</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>theme-indent.c</name>
+<revision>1.4</revision>
+</file>
+<msg>another comment update
+</msg>
+</entry>
+
+<entry>
+<date>2002-05-18</date>
+<weekday>Saturday</weekday>
+<time>13:37</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>theme-indent.c</name>
+<revision>1.3</revision>
+</file>
+<msg>updated comments
+</msg>
+</entry>
+
+<entry>
 <date>2002-05-17</date>
 <weekday>Friday</weekday>
 <time>08:58</time>
