@@ -186,7 +186,7 @@ static void command_key_add(const char *data, SERVER_REC *server,
 			    WI_ITEM_REC *item)
 {
 	GHashTable *optlist;
-	char *target, *key;
+	const char *target, *key;
 	void *free_arg;
 
 	g_return_if_fail(data != NULL);
@@ -211,7 +211,7 @@ static void command_key_add(const char *data, SERVER_REC *server,
 	} else {
 		if (*target == '\0') {
 			if (item != NULL)
-				target = item->name;
+				target = window_item_get_target(item);
 			else
 				printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
 					  "Please define channel/nick");
@@ -412,7 +412,8 @@ static void command_idea(const char *data, SERVER_REC *server,
 
 	target_type = IS_CHANNEL(item) ?
 		SEND_TARGET_CHANNEL : SEND_TARGET_NICK;
-	send_idea(server, item->name, data, target_type, TRUE);
+	send_idea(server, window_item_get_target(item),
+		  data, target_type, TRUE);
 }
 
 static void send_idea_msg(SERVER_REC *server, const char *target,
