@@ -1,3 +1,19 @@
+2002-05-04 19:21  Timo Sirainen <tss@iki.fi>
+
+	* icb/src/core/: Makefile.am, icb-channels.c, icb-commands.c,
+	icb-core.c, icb-queries.c, .cvsignore, icb-channels.h,
+	icb-commands.h, icb-protocol.c, icb-protocol.h, icb-queries.h,
+	icb-servers-reconnect.c, icb-servers.c, icb-servers.h,
+	icb-session.c, icb.h, module.h: Initial revision
+
+2002-05-04 19:21  Timo Sirainen <tss@iki.fi>
+
+	* icb/src/core/: Makefile.am, icb-channels.c, icb-commands.c,
+	icb-core.c, icb-queries.c, .cvsignore, icb-channels.h,
+	icb-commands.h, icb-protocol.c, icb-protocol.h, icb-queries.h,
+	icb-servers-reconnect.c, icb-servers.c, icb-servers.h,
+	icb-session.c, icb.h, module.h: forgot to import last time :)
+
 2002-04-27 22:58  Timo Sirainen <tss@iki.fi>
 
 	* dcc-send-limiter.c, theme-indent.c: added
