@@ -3,6 +3,32 @@
 <changelog xmlns="http://www.red-bean.com/xmlns/cvs2cl/">
 
 <entry>
+<date>2002-05-20</date>
+<weekday>Monday</weekday>
+<time>06:18</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>icb/src/core/icb-channels.c</name>
+<revision>1.3</revision>
+</file>
+<file>
+<name>icb/src/core/icb-core.c</name>
+<revision>1.3</revision>
+</file>
+<file>
+<name>icb/src/core/icb-servers.c</name>
+<revision>1.2</revision>
+</file>
+<file>
+<name>icb/src/core/icb-servers.h</name>
+<revision>1.2</revision>
+</file>
+<commondir>icb/src/core/</commondir>
+<msg>fixes for irssi cvs
+</msg>
+</entry>
+
+<entry>
 <date>2002-05-18</date>
 <weekday>Saturday</weekday>
 <time>13:52</time>
