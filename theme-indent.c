@@ -14,6 +14,12 @@
     indent_<level> = "level-specific indentation"; (eg. level_hilight, ...)
     + indent_own_public, indent_own_msg
 
+   So, ircii-like "+" indenting would come if you just added into your
+   theme file:
+
+    indent_default = "+";
+
+
     Copyright (C) 2001 Timo Sirainen
 
     This program is free software; you can redistribute it and/or modify
