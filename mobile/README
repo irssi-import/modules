@@ -1,0 +1,35 @@
+ Mobile module for Irssi.
+ ------------------------
+
+Installation:
+
+	./autogen.sh
+	./configure --with-irssi=~/cvs/irssi
+
+Irssi path defaults to ../
+
+	make install
+	(or)
+	make user_install
+
+Install irssiwap.php somewhere, you might also need to edit it. You _MUST_
+give ending / after the URL or it won't work, ie. http://xx/irssiwap.php/,
+because this is so hard to remember and looks ugly, you'll probably want to
+create some directory for it and add "DirectoryIndex irssiwap.php" to
+.htaccess. Then you could access it with http://xx/irssiwap/.
+
+REMEMBER: THIS IS NOT SECURE!!! Someone with a sniffer can easily read all
+your messages or write messages to channels. That's the reason I don't want
+to allow sending arbitrary /commands to irssi at all through this module.
+
+Start irssi, and start the module with
+
+	/LOAD mobile
+
+Module settings:
+
+	/SET mobile_port (7070) - port to listen in for web server
+	/SET mobile_webserver (127.0.0.1) - IP for web server
+	/SET mobile_password () - Password for web server connection
+	/SET mobile_msgappend ([via irssi-WAP]) - append this text
+	     after each msg

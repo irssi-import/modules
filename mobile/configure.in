@@ -1,0 +1,42 @@
+AC_INIT(src)
+
+AM_CONFIG_HEADER(config-plugin.h)
+AM_INIT_AUTOMAKE(irssi-mobile, 0.12)
+
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_PROG_CPP
+AC_STDC_HEADERS
+AC_ARG_PROGRAM
+AM_DISABLE_STATIC
+AM_PROG_LIBTOOL
+
+AC_ARG_WITH(irssi,
+[  --with-irssi     Irssi directory],
+	IRSSI_INCLUDE=$withval,
+	IRSSI_INCLUDE="")
+
+if test x$IRSSI_INCLUDE = x; then
+	IRSSI_INCLUDE=".."
+fi
+
+# fix relative paths
+old=`pwd`
+IRSSI_INCLUDE=`eval cd $IRSSI_INCLUDE; pwd`
+cd $old
+
+AC_SUBST(IRSSI_INCLUDE)
+
+AM_PATH_GLIB(1.2.0,,, gmodule)
+
+# gcc specific options
+if test "x$ac_cv_prog_gcc" = "xyes"; then
+  CFLAGS="$CFLAGS -Wall"
+fi
+
+AC_OUTPUT(
+Makefile
+src/Makefile
+stamp.h)
