@@ -3,6 +3,54 @@
 <changelog xmlns="http://www.red-bean.com/xmlns/cvs2cl/">
 
 <entry>
+<date>2002-05-17</date>
+<weekday>Friday</weekday>
+<time>08:58</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>theme-indent.c</name>
+<revision>1.2</revision>
+</file>
+<msg>added missing include
+</msg>
+</entry>
+
+<entry>
+<date>2002-05-17</date>
+<weekday>Friday</weekday>
+<time>08:57</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>idea/src/plugin.c</name>
+<revision>1.2</revision>
+</file>
+<msg>fixes for latest cvs irssi
+</msg>
+</entry>
+
+<entry>
+<date>2002-05-17</date>
+<weekday>Friday</weekday>
+<time>08:56</time>
+<author>Timo Sirainen &lt;tss@iki.fi&gt;</author>
+<file>
+<name>icb/src/core/icb-channels.c</name>
+<revision>1.2</revision>
+</file>
+<file>
+<name>icb/src/core/icb-channels.h</name>
+<revision>1.2</revision>
+</file>
+<file>
+<name>icb/src/core/icb-core.c</name>
+<revision>1.2</revision>
+</file>
+<commondir>icb/src/core/</commondir>
+<msg>fixes for latest cvs
+</msg>
+</entry>
+
+<entry>
 <date>2002-05-04</date>
 <weekday>Saturday</weekday>
 <time>19:21</time>
