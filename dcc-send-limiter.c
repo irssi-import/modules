@@ -12,6 +12,11 @@
 
     Copyright (C) 2001 Timo Sirainen
 
+    Modified 2002/12/31 by Piotr Krukowiecki (Happy New Year! ;))
+    	* fixed unnecesary lag in sending data when send is resume
+    	* sends that were started before the module was loaded 
+    	  now are being limited as well
+
     Modified 2001/07/04 by Martin Persson
     	* updated to only keep track of the last 30 sec
 
@@ -162,7 +167,7 @@ static void sig_dcc_connected(SEND_DCC_REC *dcc)
 	mdcc = g_new0(MODULE_SEND_DCC_REC, 1);
 	MODULE_DATA_SET(dcc, mdcc);
 	mdcc->timeout_tag = -1;
-	mdcc->skip_bytes = 0;
+	mdcc->skip_bytes = dcc->transfd; /* now it works correct with dcc resume - doesn't wait 30s with sending data */
 	mdcc->max_speed = settings_get_int("dcc_send_top_speed");
 
 	/* get starttime in milliseconds */
@@ -192,10 +197,20 @@ static void sig_dcc_destroyed(SEND_DCC_REC *dcc)
 
 void dcc_send_limiter_init(void)
 {
+	GSList *tmp;
 	settings_add_int("dcc", "dcc_send_top_speed", 30);
 
 	signal_add_last("dcc connected", (SIGNAL_FUNC) sig_dcc_connected);
 	signal_add_first("dcc destroyed", (SIGNAL_FUNC) sig_dcc_destroyed);
+
+	/* Limit already existing sends */
+	for (tmp = dcc_conns; tmp != NULL; tmp = tmp->next) {
+		SEND_DCC_REC *dcc = tmp->data;
+		if (!IS_DCC_SEND(dcc)) continue;
+		if (!dcc_is_connected(dcc)) continue;
+
+		sig_dcc_connected(dcc);
+	}
 
         module_register("dcc_send_limiter", "core");
 }
