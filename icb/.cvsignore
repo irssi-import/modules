@@ -25,3 +25,4 @@ INSTALL
 ABOUT-NLS
 COPYING
 config-plugin.h
+config-plugin.h.in
