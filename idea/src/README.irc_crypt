@@ -1,0 +1,14 @@
+Irchat currently supports IDEA-encryption.  To make this possible
+also in some (less sophisticated) other clients, we provide this
+irc_crypt library.  With this, you should be able to integrate
+encryption support to your client if your client (or you) is
+totally braindamaged.
+
+This library is provided on `as is' basis and no support for
+integration is available.  Bugreports are of course appreciated.
+
+See file COPYRIGHT for license details.
+
+                                                   --tri@iki.fi
+
+$Id: README.irc_crypt,v 1.1 2002/04/27 20:46:48 cras Exp $

@@ -1,0 +1,25 @@
+Source: irssi-idea
+Section: net
+Priority: optional
+Maintainer: Pekka Aleksi Knuutila <pa@debian.org>
+Standards-Version: 3.0.0.0
+
+Package: irssi-idea
+Architecture: any
+Depends: irssi-text (>= 0.7.97)
+Description: IDEA plugin for the irssi IRC client
+ Irssi is an IRC client from the author of yagirc, Timo Sirainen. It has a
+ text, GTK and GNOME interface (with integration to the GNOME panel).
+ Irssi's features include configurability, smart nick completion, DCC resuming,
+ support for plugins and perl scripting.
+ .
+ This package includes a plugin to enable encrypting public and private
+ messages with the IDEA cipher. It was written by Heikki Hannikainen and
+ brought up to date by Pekka Aleksi Knuutila. This plugin currently works
+ only with recent versions of the text-mode version of irssi.
+ .
+ The IDEA algorithm is patented in many countries, and the patent holder
+ disallows commercial use (in which case you need to obtain a license).
+ .
+ This is strong crypto, and might be illegal to use or import/export
+ in some fascist countries. Check your local regulations!

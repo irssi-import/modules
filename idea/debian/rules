@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+
+package=irssi-idea
+irssi_source ?= $(CURDIR)/../irssi-text-0.7.98.3
+
+build:
+	$(checkdir)
+	-echo You will have to redefine the paths to the irssi sources
+	test -d $(irssi_source)
+	./configure --prefix=/usr --sysconfdir=/etc \
+	--with-irssi=$(irssi_source)
+	$(MAKE) CFLAGS="-O2 -g -Wall"
+	touch build
+
+clean:
+	$(checkdir)
+	-rm -f build
+	-$(MAKE) distclean
+	-rm -f `find . -name "*~"` debian/*debhelper debian/{files,substvars} 
+	-rm -rf debian/tmp
+	-rm -f libtool config.cache config.log config.status config-plugin.h
+	-rm -f stamp-h Makefile src/Makefile 
+
+binary-indep: checkroot build
+	$(checkdir)
+
+binary-arch: checkroot build
+	$(checkdir)
+	install -d debian/tmp
+	#dh_installdirs -A
+	dh_installdocs -A INSTALL README AUTHORS
+	dh_installchangelogs ChangeLog
+	$(MAKE) install DESTDIR=`pwd`/debian/tmp
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_shlibdeps
+	dh_gencontrol
+	dh_makeshlibs
+	dh_installdeb
+	dh_md5sums
+	dh_builddeb
+
+define checkdir
+	test -f debian/rules
+endef
+
+binary: binary-indep binary-arch
+
+checkroot:
+	$(checkdir)
+	test root = "`whoami`"
+
+.PHONY: binary binary-arch binary-indep clean checkroot
