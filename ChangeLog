@@ -1,0 +1,73 @@
+2002-04-27 22:58  Timo Sirainen <tss@iki.fi>
+
+	* dcc-send-limiter.c, theme-indent.c: added
+
+2002-04-27 22:58  Timo Sirainen <tss@iki.fi>
+
+	* icb/.cvsignore, idea/.cvsignore, mobile/.cvsignore: updates
+
+2002-04-27 22:57  Timo Sirainen <tss@iki.fi>
+
+	* icb/configure.in: updated
+
+2002-04-27 22:56  Timo Sirainen <tss@iki.fi>
+
+	* icb/: .cvsignore, AUTHORS, Makefile.am, NEWS, README, acconfig.h,
+	autogen.sh, configure.in, stamp.h.in, src/.cvsignore,
+	src/Makefile.am, src/fe-common/.cvsignore,
+	src/fe-common/Makefile.am, src/fe-common/fe-icb.c,
+	src/fe-common/module-formats.c, src/fe-common/module-formats.h,
+	src/fe-common/module.h: Initial revision
+
+2002-04-27 22:56  Timo Sirainen <tss@iki.fi>
+
+	* icb/: .cvsignore, AUTHORS, Makefile.am, NEWS, README, acconfig.h,
+	autogen.sh, configure.in, stamp.h.in, src/.cvsignore,
+	src/Makefile.am, src/fe-common/.cvsignore,
+	src/fe-common/Makefile.am, src/fe-common/fe-icb.c,
+	src/fe-common/module-formats.c, src/fe-common/module-formats.h,
+	src/fe-common/module.h: icb import
+
+2002-04-27 22:51  Timo Sirainen <tss@iki.fi>
+
+	* idea/autogen.sh, idea/config-plugin.h.in, idea/configure.in,
+	mobile/config-plugin.h.in, mobile/configure.in: updates
+
+2002-04-27 22:46  Timo Sirainen <tss@iki.fi>
+
+	* idea/: .cvsignore, AUTHORS, Makefile.am, NEWS, README,
+	acconfig.h, config-plugin.h.in, configure.in, stamp.h.in,
+	debian/changelog, debian/control, debian/copyright, debian/rules,
+	src/Makefile.am, src/module-formats.c, src/plugin.c, src/crc32.c,
+	src/irc_api.c, src/irc_crc.c, src/irc_crypt.c, src/irc_idea_v1.c,
+	src/irc_idea_v2.c, src/irc_idea_v3.c, src/irc_b64.c,
+	src/.cvsignore, src/COPYRIGHT.irc_crypt, src/README.irc_crypt,
+	src/crc32.h, src/idea.c, src/idea.h, src/irc_crypt.h,
+	src/module-formats.h, src/module.h: Initial revision
+
+2002-04-27 22:46  Timo Sirainen <tss@iki.fi>
+
+	* idea/: .cvsignore, AUTHORS, Makefile.am, NEWS, README,
+	acconfig.h, config-plugin.h.in, configure.in, stamp.h.in,
+	debian/changelog, debian/control, debian/copyright, debian/rules,
+	src/Makefile.am, src/module-formats.c, src/plugin.c, src/crc32.c,
+	src/irc_api.c, src/irc_crc.c, src/irc_crypt.c, src/irc_idea_v1.c,
+	src/irc_idea_v2.c, src/irc_idea_v3.c, src/irc_b64.c,
+	src/.cvsignore, src/COPYRIGHT.irc_crypt, src/README.irc_crypt,
+	src/crc32.h, src/idea.c, src/idea.h, src/irc_crypt.h,
+	src/module-formats.h, src/module.h: idea imported
+
+2002-04-27 22:42  Timo Sirainen <tss@iki.fi>
+
+	* mobile/: .cvsignore, AUTHORS, Makefile.am, NEWS, README,
+	acconfig.h, autogen.sh, config-plugin.h.in, configure.in,
+	irssiwap.php, stamp.h.in, src/.cvsignore, src/Makefile.am,
+	src/mobile.c, src/module.h: Initial revision
+
+2002-04-27 22:42  Timo Sirainen <tss@iki.fi>
+
+	* mobile/: .cvsignore, AUTHORS, Makefile.am, NEWS, README,
+	acconfig.h, autogen.sh, config-plugin.h.in, configure.in,
+	irssiwap.php, stamp.h.in, src/.cvsignore, src/Makefile.am,
+	src/mobile.c, src/module.h: mobile plugin imported
+
