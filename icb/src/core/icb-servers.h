@@ -36,7 +36,9 @@ struct _ICB_SERVER_REC {
         int recvbuf_next_packet;
 };
 
-ICB_SERVER_REC *icb_server_connect(ICB_SERVER_CONNECT_REC *conn);
+SERVER_REC *icb_server_init_connect(SERVER_CONNECT_REC *conn);
+void icb_server_connect(SERVER_REC *server);
+
 char *icb_server_get_channels(ICB_SERVER_REC *server);
 
 void icb_servers_init(void);

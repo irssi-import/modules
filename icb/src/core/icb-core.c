@@ -101,6 +101,14 @@ static void destroy_server_connect(SERVER_CONNECT_REC *conn)
 {
 }
 
+static CHANNEL_REC *_channel_create(SERVER_REC *server, const char *name,
+				    const char *visible_name, int automatic)
+{
+	return (CHANNEL_REC *)
+		icb_channel_create((ICB_SERVER_REC *) server, name,
+				   visible_name, automatic);
+}
+
 void icb_core_init(void)
 {
 	CHAT_PROTOCOL_REC *rec;
@@ -118,15 +126,10 @@ void icb_core_init(void)
 	rec->create_server_connect = create_server_connect;
 	rec->destroy_server_connect = destroy_server_connect;
 
-	rec->server_connect = (SERVER_REC *(*) (SERVER_CONNECT_REC *))
-		icb_server_connect;
-	rec->channel_create =
-		(CHANNEL_REC *(*) (SERVER_REC *, const char *,
-				   const char *, int))
-                icb_channel_create;
-	rec->query_create =
-		(QUERY_REC *(*) (const char *, const char *, int))
-                icb_query_create;
+	rec->server_init_connect = icb_server_init_connect;
+	rec->server_connect = icb_server_connect;
+	rec->channel_create = _channel_create;
+	rec->query_create = icb_query_create;
 
 	chat_protocol_register(rec);
         g_free(rec);

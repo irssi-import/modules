@@ -28,7 +28,7 @@
 #include "icb-channels.h"
 #include "icb-protocol.h"
 
-ICB_SERVER_REC *icb_server_connect(ICB_SERVER_CONNECT_REC *conn)
+SERVER_REC *icb_server_init_connect(SERVER_CONNECT_REC *conn)
 {
 	ICB_SERVER_REC *server;
 
@@ -45,19 +45,21 @@ ICB_SERVER_REC *icb_server_connect(ICB_SERVER_CONNECT_REC *conn)
         server->sendbuf_size = 256;
 	server->sendbuf = g_malloc(server->sendbuf_size);
 
-	server->connrec = conn;
+	server->connrec = (ICB_SERVER_CONNECT_REC *) conn;
         server_connect_ref(SERVER_CONNECT(conn));
 
 	if (server->connrec->port <= 0)
 		server->connrec->port = 7326;
 
-	if (!server_start_connect((SERVER_REC *) server)) {
-                server_connect_unref(SERVER_CONNECT(conn));
-		g_free(server);
-		return NULL;
-	}
+	return (SERVER_REC *) server;
+}
 
-	return server;
+void icb_server_connect(SERVER_REC *server)
+{
+	if (!server_start_connect(server)) {
+                server_connect_unref(server->connrec);
+		g_free(server);
+	}
 }
 
 static void sig_server_disconnected(ICB_SERVER_REC *server)

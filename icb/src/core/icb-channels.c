@@ -46,7 +46,8 @@ void icb_change_channel(ICB_SERVER_REC *server, const char *channel,
 		return;
 
 	channel_destroy(CHANNEL(server->group));
-	server->group = icb_channel_create(server, channel, NULL, automatic);
+	server->group = (ICB_CHANNEL_REC *)
+		icb_channel_create(server, channel, NULL, automatic);
 
         icb_command(server, "g", channel, NULL);
 }
@@ -57,8 +58,9 @@ static void sig_connected(ICB_SERVER_REC *server)
 		return;
 
 	/* create the group for the channel */
-	server->group = icb_channel_create(server, server->connrec->channels,
-					   NULL, TRUE);
+	server->group = (ICB_CHANNEL_REC *)
+		icb_channel_create(server, server->connrec->channels,
+				   NULL, TRUE);
 }
 
 void icb_channels_init(void)
