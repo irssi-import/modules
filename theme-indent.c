@@ -15,7 +15,7 @@
     + indent_own_public, indent_own_msg
 
    So, ircii-like "+" indenting would come if you just added into your
-   theme file:
+   theme file, inside the abstracts = { .. } block:
 
     indent_default = "+";
 
