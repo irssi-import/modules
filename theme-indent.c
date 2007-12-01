@@ -3,8 +3,8 @@
  		  indentation strings from theme.
 
  compile:
-   export IRSSI=~/src/irssi-0.8.5
-   gcc theme-indent.c -Wall -g -o ~/.irssi/modules/libtheme_indent.so -shared -I$IRSSI/src -I$IRSSI/src/fe-common/core -I$IRSSI/src/core -I$IRSSI/src/fe-text `glib-config --cflags`
+   export IRSSI=~/src/irssi
+   gcc theme-indent.c -Wall -g -o ~/.irssi/modules/libtheme_indent.so -shared -I$IRSSI -I$IRSSI/src -I$IRSSI/src/fe-common/core -I$IRSSI/src/core -I$IRSSI/src/fe-text -DHAVE_CONFIG_H `pkg-config --cflags glib-2.0`
 
  usage:
    /LOAD theme_indent
