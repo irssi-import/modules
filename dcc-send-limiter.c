@@ -5,7 +5,7 @@
 
  compile:
    export IRSSI=~/cvs/irssi
-   gcc dcc-send-limiter.c -o ~/.irssi/modules/libdcc_send_limiter.so -g -shared -I$IRSSI -I$IRSSI/src -I$IRSSI/src/core -I$IRSSI/src/irc/core -I$IRSSI/src/irc/dcc `glib-config --cflags` -O
+   gcc dcc-send-limiter.c -o ~/.irssi/modules/libdcc_send_limiter.so -g -shared -fPIC -I$IRSSI -I$IRSSI/src -I$IRSSI/src/core -I$IRSSI/src/irc/core -I$IRSSI/src/irc/dcc `pkg-config --cflags glib-2.0` -O
 
  usage:
    /LOAD dcc_send_limiter
@@ -205,3 +205,10 @@ void dcc_send_limiter_deinit(void)
 	signal_remove("dcc connected", (SIGNAL_FUNC) sig_dcc_connected);
 	signal_remove("dcc destroyed", (SIGNAL_FUNC) sig_dcc_destroyed);
 }
+
+#ifdef IRSSI_ABI_VERSION
+void dcc_send_limiter_abicheck(int *version)
+{
+    *version = IRSSI_ABI_VERSION;
+}
+#endif
