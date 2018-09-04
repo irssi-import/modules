@@ -149,3 +149,10 @@ void theme_indent_deinit(void)
 
         signal_remove("setup changed", (SIGNAL_FUNC) read_settings);
 }
+
+#ifdef IRSSI_ABI_VERSION
+void theme_indent_abicheck(int *version)
+{
+    *version = IRSSI_ABI_VERSION;
+}
+#endif
