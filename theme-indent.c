@@ -39,16 +39,35 @@
 
 #define MODULE_NAME "fe-text/theme-indent"
 
-#include "common.h"
-#include "modules.h"
-#include "signals.h"
-#include "levels.h"
+#include <irssi/src/common.h>
+#include <irssi/src/core/modules.h>
+#include <irssi/src/core/signals.h>
+#include <irssi/src/core/misc.h>
+#include <irssi/src/core/levels.h>
 
-#include "themes.h"
-#include "gui-printtext.h"
+#include <irssi/src/fe-text/gui-printtext.h>
 
 static char *default_indent_text, *own_public_text, *own_msg_text;
 static char *level_texts[32];
+
+#if defined(IRSSI_ABI_VERSION) && IRSSI_ABI_VERSION >= 20
+#define COLUMNS(...) __VA_ARGS__
+#else
+#define COLUMNS(...) 0
+#endif
+
+static MAIN_WINDOW_REC *find_mainwindow(TEXT_BUFFER_VIEW_REC *view)
+{
+	MAIN_WINDOW_REC *ret;
+	GSList *tmp;
+	for (tmp = mainwindows; tmp != NULL; tmp = tmp->next) {
+		ret = tmp->data;
+		if (ret->active != NULL &&
+		    WINDOW_GUI(ret->active)->view == view)
+			return ret;
+	}
+	return NULL;
+}
 
 static int indent(TEXT_BUFFER_VIEW_REC *view, LINE_REC *line, int ypos)
 {
@@ -77,10 +96,16 @@ static int indent(TEXT_BUFFER_VIEW_REC *view, LINE_REC *line, int ypos)
 		}
 	}
 
-	if (ypos != -1 && text != NULL)
-		term_addstr(view->window, text);
+	if (ypos != -1 && text != NULL) {
+		MAIN_WINDOW_REC *main;
+		if ((main = find_mainwindow(view)) != NULL) {
+			gui_printtext(COLUMNS(main->first_column + main->statusbar_columns_left),
+				      main->first_line + main->statusbar_lines_top + ypos,
+				      text);
+		}
+	}
 
-	return text == NULL ? 0 : strlen(text);
+	return text == NULL ? 0 : format_get_length(text);
 }
 
 static void get_theme_text(const char *format, char **dest)
@@ -109,7 +134,7 @@ static void read_settings(void)
 
         for (count = 0, i = (MSGLEVEL_ALL+1)/2; i >= 1; i /= 2, count++) {
 		name = bits2level(i);
-                g_strdown(name);
+                ascii_strdown(name);
 
 		format = g_strdup_printf("{indent_%s}", name);
 		get_theme_text(format, &level_texts[count]);
