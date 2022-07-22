@@ -3,6 +3,9 @@
  		  indentation strings from theme.
 
  compile:
+   gcc theme-indent.c -fPIC -Wall -shared -g -o ~/.irssi/modules/libtheme_indent.so `pkg-config --cflags irssi-1`
+
+ compile (old irssis):
    export IRSSI=~/src/irssi
    gcc theme-indent.c -Wall -g -o ~/.irssi/modules/libtheme_indent.so -shared -I$IRSSI -I$IRSSI/src -I$IRSSI/src/fe-common/core -I$IRSSI/src/core -I$IRSSI/src/fe-text -DHAVE_CONFIG_H `pkg-config --cflags glib-2.0`
 
@@ -175,9 +178,15 @@ void theme_indent_deinit(void)
         signal_remove("setup changed", (SIGNAL_FUNC) read_settings);
 }
 
+#ifdef MODULE_ABICHECK
+MODULE_ABICHECK(theme_indent)
+#else
+
 #ifdef IRSSI_ABI_VERSION
 void theme_indent_abicheck(int *version)
 {
     *version = IRSSI_ABI_VERSION;
 }
+#endif
+
 #endif
