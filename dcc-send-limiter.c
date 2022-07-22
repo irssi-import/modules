@@ -4,6 +4,9 @@
  For irssi 0.8+
 
  compile:
+   gcc dcc-send-limiter.c -fPIC -Wall -shared -g -O -o ~/.irssi/modules/libdcc_send_limiter.so `pkg-config --cflags irssi-1`
+
+ compile (old irssis):
    export IRSSI=~/cvs/irssi
    gcc dcc-send-limiter.c -o ~/.irssi/modules/libdcc_send_limiter.so -g -shared -fPIC -I$IRSSI -I$IRSSI/src -I$IRSSI/src/core -I$IRSSI/src/irc/core -I$IRSSI/src/irc/dcc `pkg-config --cflags glib-2.0` -O
 
@@ -45,13 +48,18 @@
 #define MODULE_NAME "irc/dcc/limiter"
 #define HAVE_CONFIG_H
 
-#include "common.h"
-#include "signals.h"
-#include "network.h"
-#include "settings.h"
+#include <irssi/src/common.h>
+#include <irssi/src/core/signals.h>
+#include <irssi/src/core/network.h>
+#include <irssi/src/core/settings.h>
 
-#include "irc.h"
-#include "dcc-send.h"
+#include <irssi/src/irc/core/irc.h>
+#include <irssi/src/irc/dcc/dcc-send.h>
+
+#if !defined(IRSSI_ABI_VERSION) || IRSSI_ABI_VERSION < 32
+#define I_INPUT_WRITE G_INPUT_WRITE
+#define i_input_add g_input_add
+#endif
 
 typedef struct {
 	int timeout_tag;
@@ -76,7 +84,7 @@ static void reset_dcc_send(SEND_DCC_REC *dcc)
 	g_source_remove(mdcc->timeout_tag);
 	mdcc->timeout_tag = -1;
 
-	dcc->tagwrite = g_input_add(dcc->handle, G_INPUT_WRITE,
+	dcc->tagwrite = i_input_add(dcc->handle, I_INPUT_WRITE,
 				    (GInputFunction) dcc_send_data, dcc);
 }
 
@@ -175,7 +183,7 @@ static void sig_dcc_connected(SEND_DCC_REC *dcc)
 	mdcc->starttime = (gtv.tv_sec * 1000) + (gtv.tv_usec / 1000);
 
 	g_source_remove(dcc->tagwrite);
-	dcc->tagwrite = g_input_add(dcc->handle, G_INPUT_WRITE,
+	dcc->tagwrite = i_input_add(dcc->handle, I_INPUT_WRITE,
 					(GInputFunction) dcc_send_data, dcc);
 }
 
@@ -221,9 +229,15 @@ void dcc_send_limiter_deinit(void)
 	signal_remove("dcc destroyed", (SIGNAL_FUNC) sig_dcc_destroyed);
 }
 
+#ifdef MODULE_ABICHECK
+MODULE_ABICHECK(dcc_send_limiter)
+#else
+
 #ifdef IRSSI_ABI_VERSION
 void dcc_send_limiter_abicheck(int *version)
 {
     *version = IRSSI_ABI_VERSION;
 }
+#endif
+
 #endif
